@@ -1,0 +1,7 @@
+.cache
+build
+install
+
+compile_commands.json
+
+*.sublime-*
