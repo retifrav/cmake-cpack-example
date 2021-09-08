@@ -3,7 +3,7 @@
 
 namespace sm
 {
-    namespace lbr
+    namespace lbrSome
     {
         void printSomething();
     }

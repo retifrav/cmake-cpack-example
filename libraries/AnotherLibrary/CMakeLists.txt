@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.21)
 
-set(OWN_VERSION 1.0.1)
+set(OWN_VERSION 1.0.2)
 if(DEFINED CMAKE_PROJECT_VERSION AND NOT "${CMAKE_PROJECT_VERSION}" STREQUAL "")
     set(OWN_VERSION ${CMAKE_PROJECT_VERSION})
 endif()
 
 set(namespace "some")
-project("SomeLibrary"
+project("AnotherLibrary"
     VERSION ${OWN_VERSION}
-    DESCRIPTION "Some library"
+    DESCRIPTION "Another library"
 )
 
 message(STATUS "This project version: ${PROJECT_VERSION}")
@@ -34,7 +34,7 @@ add_library(${PROJECT_NAME} STATIC)
 
 target_sources(${PROJECT_NAME}
     PRIVATE
-        src/some.cpp
+        src/another.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

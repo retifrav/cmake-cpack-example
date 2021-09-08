@@ -24,7 +24,7 @@ endif()
 
 # without it public headers won't get installed
 set(public_headers
-    include/some.h
+    include/another.h
 )
 # note that ${public_headers} should be in quotes
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${public_headers}")
@@ -35,8 +35,8 @@ include(CMakePackageConfigHelpers)
 
 install(TARGETS ${PROJECT_NAME}
     EXPORT "${PROJECT_NAME}Targets"
-    COMPONENT libSome
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME} # include/SomeLibrary
+    COMPONENT libAnother
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME} # include/AnotherLibrary
     #RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
     #LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
     #ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
@@ -47,7 +47,7 @@ install(EXPORT "${PROJECT_NAME}Targets"
         FILE "${PROJECT_NAME}Targets.cmake"
         NAMESPACE ${namespace}::
         DESTINATION cmake
-        COMPONENT libSome
+        COMPONENT libAnother
 )
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
@@ -63,7 +63,7 @@ install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
     DESTINATION cmake
-    COMPONENT libSome
+    COMPONENT libAnother
 )
 # generate the export targets for the build tree
 export(EXPORT "${PROJECT_NAME}Targets"
