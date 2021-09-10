@@ -38,46 +38,32 @@ set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 # if set, then instead of SomeLibrary-0.9.1-Darwin.deb
 # you'll get somelibrary_0.9.1_darwin-amd64.deb
 set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+# if you want every group to have its own package
+#set(CPACK_COMPONENTS_GROUPING ONE_PER_GROUP)
+# without this you won't be able to pack only specified component
+set(CPACK_DEB_COMPONENT_INSTALL ON)
+
+#set(CPACK_COMPONENTS_ALL "libAnother")
+message(STATUS "Components to pack: ${CPACK_COMPONENTS_ALL}")
 
 include(CPack)
 
-# components and groups
-# cpack_add_component(${PROJECT_NAME}_runtime
-#     DISPLAY_NAME  Runtime
-#     DESCRIPTION   "Shared libraries and executables"
-#     REQUIRED
-#     INSTALL_TYPES Full Developer Minimal
+# you can add various meta information to the components defined in INSTALLs
+# cpack_add_component(programMain
+#     DISPLAY_NAME "Some application"
+#     DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}"
+#     #GROUP group1
 # )
-# cpack_add_component(${PROJECT_NAME}_development
-#     DISPLAY_NAME  "Developer pre-requisites"
-#     DESCRIPTION   "Headers/static libs needed for building"
-#     DEPENDS       ${PROJECT_NAME}_runtime
-#     GROUP         ${PROJECT_NAME}_SDK
-#     INSTALL_TYPES Full Developer
+# cpack_add_component(libSome
+#     DISPLAY_NAME "Some library"
+#     DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}"
+#     #GROUP group1
 # )
-# cpack_add_component(${PROJECT_NAME}_samples
-#     DISPLAY_NAME  "Code samples"
-#     GROUP         ${PROJECT_NAME}_help
-#     INSTALL_TYPES Full Developer
-#     DISABLED
+# cpack_add_component(libAnother
+#     DISPLAY_NAME "Another library"
+#     DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}"
+#     #GROUP group2
 # )
-# cpack_add_component(${PROJECT_NAME}_docs
-#     DISPLAY_NAME  "API documentation"
-#     GROUP         ${PROJECT_NAME}_help
-#     INSTALL_TYPES Full Developer
-#     DISABLED
-# )
-# cpack_add_component_group(${PROJECT_NAME}_SDK
-#     DISPLAY_NAME  SDK
-#     DESCRIPTION   "Developer tools, libraries, etc."
-# )
-# cpack_add_component_group(${PROJECT_NAME}_help
-#     DISPLAY_NAME  Documentation
-#     DESCRIPTION   "Code samples and API docs"
-#     PARENT_GROUP  ${PROJECT_NAME}_SDK
-# )
-# cpack_add_install_type(Full)
-# cpack_add_install_type(Minimal)
-# cpack_add_install_type(Developer
-#     DISPLAY_NAME "SDK"
-# )
+# you can also put them into groups
+#cpack_add_component_group(group1)
+#cpack_add_component_group(group2)

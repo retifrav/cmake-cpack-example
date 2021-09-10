@@ -58,4 +58,3 @@ endif()
 # where to find our CMake modules
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(Installing)
-include(Packing)

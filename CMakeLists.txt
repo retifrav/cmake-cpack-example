@@ -26,6 +26,3 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 #message(STATUS "CMake module path: ${CMAKE_MODULE_PATH}")
 include(Installing)
 include(Packing)
-
-#set(CPACK_COMPONENTS_ALL "libSome")
-message(STATUS "Components to install/pack: ${CPACK_COMPONENTS_ALL}")
