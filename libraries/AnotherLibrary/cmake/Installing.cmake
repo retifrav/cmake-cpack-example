@@ -35,7 +35,7 @@ include(CMakePackageConfigHelpers)
 
 install(TARGETS ${PROJECT_NAME}
     EXPORT "${PROJECT_NAME}Targets"
-    COMPONENT libAnother
+    COMPONENT ${PROJECT_NAME}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME} # include/AnotherLibrary
     #RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
     #LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
@@ -47,7 +47,7 @@ install(EXPORT "${PROJECT_NAME}Targets"
         FILE "${PROJECT_NAME}Targets.cmake"
         NAMESPACE ${namespace}::
         DESTINATION cmake
-        COMPONENT libAnother
+        COMPONENT ${PROJECT_NAME}
 )
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
@@ -63,7 +63,7 @@ install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
     DESTINATION cmake
-    COMPONENT libAnother
+    COMPONENT ${PROJECT_NAME}
 )
 # generate the export targets for the build tree
 export(EXPORT "${PROJECT_NAME}Targets"

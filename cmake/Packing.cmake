@@ -16,24 +16,6 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "YOUR NAME")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 
-# if(WIN32)
-#     set(CPACK_GENERATOR ZIP)
-# elseif(APPLE)
-#     set(CPACK_GENERATOR TGZ productbuild)
-# elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-#     set(CPACK_GENERATOR TGZ DEB)
-# else()
-#     set(CPACK_GENERATOR TGZ)
-# endif()
-
-# conditional packing of components
-# if(NOT MYPROJ_PACKAGE_HELP)
-#     set(CPACK_COMPONENTS_ALL
-#         MyProj_Runtime
-#         MyProj_Development
-#     )
-# endif()
-
 # package name for deb
 # if set, then instead of SomeLibrary-0.9.1-Darwin.deb
 # you'll get somelibrary_0.9.1_darwin-amd64.deb
@@ -43,12 +25,9 @@ set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
 # without this you won't be able to pack only specified component
 set(CPACK_DEB_COMPONENT_INSTALL ON)
 
-#set(CPACK_COMPONENTS_ALL "libAnother")
-message(STATUS "Components to pack: ${CPACK_COMPONENTS_ALL}")
-
 include(CPack)
 
-# you can add various meta information to the components defined in INSTALLs
+# optionally, you can add various meta information to the components defined in INSTALLs
 # cpack_add_component(programMain
 #     DISPLAY_NAME "Some application"
 #     DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}"
@@ -67,3 +46,7 @@ include(CPack)
 # you can also put them into groups
 #cpack_add_component_group(group1)
 #cpack_add_component_group(group2)
+
+# can be also set as -DCPACK_COMPONENTS_ALL="AnotherLibrary"
+#set(CPACK_COMPONENTS_ALL "AnotherLibrary")
+message(STATUS "Components to pack: ${CPACK_COMPONENTS_ALL}")
