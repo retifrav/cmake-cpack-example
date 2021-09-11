@@ -20,8 +20,10 @@ set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 # if set, then instead of SomeLibrary-0.9.1-Darwin.deb
 # you'll get somelibrary_0.9.1_darwin-amd64.deb
 set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
-# if you want every group to have its own package
-#set(CPACK_COMPONENTS_GROUPING ONE_PER_GROUP)
+# if you want every group to have its own package,
+# although the same happens if this is not sent (so it defaults to ONE_PER_GROUP)
+# and CPACK_DEB_COMPONENT_INSTALL is ON
+set(CPACK_COMPONENTS_GROUPING ALL_COMPONENTS_IN_ONE)#ONE_PER_GROUP)
 # without this you won't be able to pack only specified component
 set(CPACK_DEB_COMPONENT_INSTALL ON)
 

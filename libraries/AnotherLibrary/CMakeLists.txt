@@ -27,9 +27,6 @@ else()
     message(STATUS "C++ standard has been already set to: ${CMAKE_CXX_STANDARD}")
 endif()
 
-# for clangd
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 add_library(${PROJECT_NAME} STATIC)
 
 target_sources(${PROJECT_NAME}
@@ -48,6 +45,11 @@ target_include_directories(${PROJECT_NAME}
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
+# without it public headers won't get installed
+set(public_headers
+    include/another.h
+)
+
 # not for MSVC
 if(CMAKE_COMPILER_IS_GNUCXX)
     # compile options for this target only
@@ -55,6 +57,13 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
 endif()
 
+# message(STATUS "Paths:\n\
+# CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}\n\
+# CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}\n\
+# CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}\n\
+# CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}\
+# ")
 # where to find our CMake modules
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(Installing)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(InstallingGeneral)
+include(InstallingConfigs)

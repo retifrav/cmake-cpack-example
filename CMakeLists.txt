@@ -10,6 +10,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # for clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# not for MSVC
+if(CMAKE_COMPILER_IS_GNUCXX)
+    # compile options for this target only
+    # treat warnings as errors
+    target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
+endif()
+
 add_subdirectory(libraries)
 
 add_executable(${PROJECT_NAME})
@@ -24,5 +31,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE SomeLibrary)
 # where to find our CMake modules
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 #message(STATUS "CMake module path: ${CMAKE_MODULE_PATH}")
-include(Installing)
+include(InstallingGeneral)
 include(Packing)
