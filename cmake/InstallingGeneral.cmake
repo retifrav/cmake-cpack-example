@@ -31,7 +31,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "d")
 install(
     TARGETS ${PROJECT_NAME}
     EXPORT "${PROJECT_NAME}Targets"
-    COMPONENT ${PROJECT_NAME}
+    COMPONENT ${PROJECT_NAME} # must be here, not any line lower
     # these get default values from GNUInstallDirs, no need to set them
     #RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
     #LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
