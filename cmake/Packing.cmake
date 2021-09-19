@@ -1,17 +1,33 @@
-set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+# these are cache variables, so they could be overwritten with -D,
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME}
+    CACHE STRING "The resulting package name"
+)
+# which is useful in case of packing only selected components instead of the whole thing
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple C++ application"
+    CACHE STRING "Package description for the package metadata"
+)
 set(CPACK_PACKAGE_VENDOR "Some Company")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Simple C++ application")
+
+set(CPACK_VERBATIM_VARIABLES YES)
+
 set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
-SET(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_SOURCE_DIR}/packages")
+SET(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_SOURCE_DIR}/_packages")
+set(CPACK_STRIP_FILES YES)
+
+set(CPACK_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS
+    OWNER_READ OWNER_WRITE OWNER_EXECUTE
+    GROUP_READ GROUP_EXECUTE
+    WORLD_READ WORLD_EXECUTE
+)
+
 set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/some/${CMAKE_PROJECT_VERSION}")
+
 set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-set(CPACK_VERBATIM_VARIABLES YES)
 
 set(CPACK_PACKAGE_CONTACT "YOUR@E-MAIL.net")
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "YOUR NAME")
-#set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "YOUR NAME <${CPACK_PACKAGE_CONTACT}>")
 
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
@@ -22,25 +38,26 @@ set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
 # if you want every group to have its own package,
 # although the same happens if this is not sent (so it defaults to ONE_PER_GROUP)
-# and CPACK_DEB_COMPONENT_INSTALL is ON
+# and CPACK_DEB_COMPONENT_INSTALL is set to YES
 set(CPACK_COMPONENTS_GROUPING ALL_COMPONENTS_IN_ONE)#ONE_PER_GROUP)
 # without this you won't be able to pack only specified component
-set(CPACK_DEB_COMPONENT_INSTALL ON)
+set(CPACK_DEB_COMPONENT_INSTALL YES)
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS YES)
 
 include(CPack)
 
 # optionally, you can add various meta information to the components defined in INSTALLs
-# cpack_add_component(programMain
+# cpack_add_component(some-application
 #     DISPLAY_NAME "Some application"
 #     DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}"
 #     #GROUP group1
 # )
-# cpack_add_component(libSome
+# cpack_add_component(SomeLibrary
 #     DISPLAY_NAME "Some library"
 #     DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}"
 #     #GROUP group1
 # )
-# cpack_add_component(libAnother
+# cpack_add_component(AnotherLibrary
 #     DISPLAY_NAME "Another library"
 #     DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}"
 #     #GROUP group2

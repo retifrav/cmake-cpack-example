@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.21)
 
 project("some-application"
-    VERSION 0.9.2
     DESCRIPTION "A project with nested library"
+    VERSION 0.9.2
 )
 
 set(CMAKE_CXX_STANDARD 11)
