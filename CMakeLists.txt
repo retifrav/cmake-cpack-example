@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
-project("some-application"
+project(
+    "some-application"
     DESCRIPTION "A project with nested library"
     VERSION 0.9.2
 )
@@ -10,18 +11,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # for clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# not for MSVC
-if(CMAKE_COMPILER_IS_GNUCXX)
-    # compile options for this target only
-    # treat warnings as errors
-    target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
-endif()
-
 add_subdirectory(libraries)
 
 add_executable(${PROJECT_NAME})
 
-target_sources(${PROJECT_NAME}
+target_sources(
+    ${PROJECT_NAME}
     PRIVATE
         main.cpp
 )

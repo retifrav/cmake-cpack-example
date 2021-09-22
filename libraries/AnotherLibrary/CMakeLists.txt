@@ -6,7 +6,8 @@ if(DEFINED CMAKE_PROJECT_VERSION AND NOT "${CMAKE_PROJECT_VERSION}" STREQUAL "")
 endif()
 
 set(namespace "some")
-project("AnotherLibrary"
+project(
+    "AnotherLibrary"
     VERSION ${OWN_VERSION}
     DESCRIPTION "Another library"
 )
@@ -29,7 +30,8 @@ endif()
 
 add_library(${PROJECT_NAME} STATIC)
 
-target_sources(${PROJECT_NAME}
+target_sources(
+    ${PROJECT_NAME}
     PRIVATE
         src/another.cpp
 )
@@ -46,7 +48,8 @@ target_include_directories(${PROJECT_NAME}
 )
 
 # without it public headers won't get installed
-set(public_headers
+set(
+    public_headers
     include/another.h
 )
 
