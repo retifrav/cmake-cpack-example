@@ -12,7 +12,6 @@ include(CMakePackageConfigHelpers)
 # generate the version file for the config file
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-    VERSION "${version}"
     COMPATIBILITY AnyNewerVersion
 )
 # create config file
